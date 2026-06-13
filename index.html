@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <!-- Google Fonts: Outfit and Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-decorations">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <main class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">Temperature Converter</h1>
+            <p class="app-description">Convert temperatures seamlessly between Celsius, Fahrenheit, and Kelvin scales with real-time updates and interactive visual feedback.</p>
+        </header>
+
+        <section class="converter-card">
+            <!-- Left Panel: Inputs and Presets -->
+            <div class="converter-inputs-panel">
+                <div class="input-grid">
+                    <!-- Celsius Input -->
+                    <div class="input-card" id="card-celsius">
+                        <div class="input-header">
+                            <label for="input-celsius">Celsius</label>
+                            <span class="unit-symbol">°C</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="number" id="input-celsius" placeholder="Enter Celsius" step="any" value="25">
+                            <span class="input-focus-border"></span>
+                        </div>
+                    </div>
+
+                    <!-- Fahrenheit Input -->
+                    <div class="input-card" id="card-fahrenheit">
+                        <div class="input-header">
+                            <label for="input-fahrenheit">Fahrenheit</label>
+                            <span class="unit-symbol">°F</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="number" id="input-fahrenheit" placeholder="Enter Fahrenheit" step="any">
+                            <span class="input-focus-border"></span>
+                        </div>
+                    </div>
+
+                    <!-- Kelvin Input -->
+                    <div class="input-card" id="card-kelvin">
+                        <div class="input-header">
+                            <label for="input-kelvin">Kelvin</label>
+                            <span class="unit-symbol">K</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="number" id="input-kelvin" placeholder="Enter Kelvin" step="any">
+                            <span class="input-focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Presets Section -->
+                <div class="presets-section">
+                    <h3 class="section-title">Quick Presets</h3>
+                    <div class="presets-grid">
+                        <button class="preset-btn" data-celsius="-273.15" title="Absolute Zero">
+                            <span class="preset-icon">🧊</span>
+                            <span class="preset-label">Absolute Zero</span>
+                            <span class="preset-value">-273.15°C</span>
+                        </button>
+                        <button class="preset-btn" data-celsius="0" title="Freezing Point of Water">
+                            <span class="preset-icon">❄️</span>
+                            <span class="preset-label">Water Freezing</span>
+                            <span class="preset-value">0°C</span>
+                        </button>
+                        <button class="preset-btn" data-celsius="25" title="Standard Room Temperature">
+                            <span class="preset-icon">🌡️</span>
+                            <span class="preset-label">Room Temp</span>
+                            <span class="preset-value">25°C</span>
+                        </button>
+                        <button class="preset-btn" data-celsius="37" title="Normal Human Body Temperature">
+                            <span class="preset-icon">🧍</span>
+                            <span class="preset-label">Body Temp</span>
+                            <span class="preset-value">37°C</span>
+                        </button>
+                        <button class="preset-btn" data-celsius="100" title="Boiling Point of Water">
+                            <span class="preset-icon">🔥</span>
+                            <span class="preset-label">Water Boiling</span>
+                            <span class="preset-value">100°C</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Visual Thermometer Display -->
+            <div class="converter-visual-panel">
+                <div class="thermometer-container">
+                    <div class="thermometer-ticks">
+                        <span class="tick" data-temp="100°C"></span>
+                        <span class="tick" data-temp="80°C"></span>
+                        <span class="tick" data-temp="60°C"></span>
+                        <span class="tick" data-temp="40°C"></span>
+                        <span class="tick" data-temp="20°C"></span>
+                        <span class="tick" data-temp="0°C"></span>
+                        <span class="tick" data-temp="-20°C"></span>
+                        <span class="tick" data-temp="-40°C"></span>
+                    </div>
+                    <div class="thermometer-glass">
+                        <div class="thermometer-fluid" id="thermometer-fluid">
+                            <div class="fluid-bubbles"></div>
+                        </div>
+                    </div>
+                    <div class="thermometer-bulb" id="thermometer-bulb"></div>
+                </div>
+                <div class="visual-status">
+                    <span class="status-indicator-dot" id="status-dot"></span>
+                    <span class="status-text" id="status-text">Room Temperature</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulas Panel -->
+        <section class="formulas-card">
+            <button class="formulas-toggle" id="formulas-toggle">
+                <span>Show Mathematical Conversion Formulas</span>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div class="formulas-content" id="formulas-content">
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <h4>Celsius to Others</h4>
+                        <p><code>°F = (°C × 9/5) + 32</code></p>
+                        <p><code>K = °C + 273.15</code></p>
+                    </div>
+                    <div class="formula-box">
+                        <h4>Fahrenheit to Others</h4>
+                        <p><code>°C = (°F - 32) × 5/9</code></p>
+                        <p><code>K = ((°F - 32) × 5/9) + 273.15</code></p>
+                    </div>
+                    <div class="formula-box">
+                        <h4>Kelvin to Others</h4>
+                        <p><code>°C = K - 273.15</code></p>
+                        <p><code>°F = ((K - 273.15) × 9/5) + 32</code></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <div class="footer-line"></div>
+            <div class="footer-content">
+                <span class="company-name">Temperature Converter</span>
+                <span class="project-tag">Sleek & Accurate</span>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
